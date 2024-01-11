@@ -12,7 +12,7 @@ For that I hacked on the default Qtile config and was very cautios about adding 
 
 With that out of the way... Feel free to use it or let it inspire you!
 
-I use Arch btw.
+I use Arch, btw.
 
 # Setup
 Download this repo and extract it. You might want to check the autostart_desktop.sh as it contains commands to set up my screen resolutions/roations, wallpaper and composing effects at log in. 
@@ -23,7 +23,7 @@ For an Arch Distribution install
 ```sudo pacman -S qtile python-psutil lm-sensors```
 in your terminal of choice. 
 
-python-psutil and lm-sensors are used to grab information of hardware 
+python-psutil and lm-sensors are used to grab information off of hardware 
 (see documentation [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#thermalsensor), [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#cpu), and [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#memory))
 
 Pacman should also install every neccessary dependency automatically.
@@ -41,7 +41,7 @@ mv * ~/.config/qtile
 Now log out and start a new session in Qtile or simply press `Mod (usally left Win key) + Ctrl + r` to restart Qtile with the new config.
 
 Consider installing [Dunst](https://wiki.archlinux.org/title/Dunst), a lightweight replacement for the notification-daemons and [Picom](https://wiki.archlinux.org/title/Picom), a standalone window compositor on X11 for a little bit of eye candy.
-# Future Imporvements
+# Future Improvements
 I use Qtile on two machines. One of them is a Laptop and the other is my Desktop. They both use different sets of FN-Keys. My goal is configure Qtile in a way to recognize the host and automatically set the right keybindings for the FN-Keys.
 
 My Desktop also uses two screens. I would love to start specific apps to defined groups and screens.
