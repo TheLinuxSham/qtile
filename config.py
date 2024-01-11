@@ -30,6 +30,9 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from color_palette import catpuccino_latte
 from autostart_script.autostart_module import autostart_once
+from keys.lenovo import lenovo_keys
+from keys.desktop import desktop_keys
+import os
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -93,15 +96,15 @@ keys = [
         lazy.spawn("sh -c ~/.config/rofi/scripts/themes"),
         desc="Theme_switcher"),
 
-    # CUSTOM FN-KEYS LENOVO THINKPAD KEYBOARD
+    # UNIVERSAL SET OF FN-KEYS
     Key([],
         "XF86AudioRaiseVolume",
         lazy.spawn("pactl set-sink-volume 0 +5%"),
-        desc="Volume Up"),
+        desc="Volume Up By 5%"),
     Key([],
         "XF86AudioLowerVolume",
         lazy.spawn("pactl set-sink-volume 0 -5%"),
-        desc="Volume down"),
+        desc="Volume Down By 5%"),
     Key([],
         "XF86AudioMute",
         lazy.spawn("amixer set Master toggle"),
@@ -110,28 +113,17 @@ keys = [
         "XF86AudioMicMute",
         lazy.spawn("amixer set Capture toggle"),
         desc="Microphone (Un)Mute"),
-    Key([],
-        "XF86MonBrightnessUp",
-        lazy.spawn("brightnessctl s 10%+"),
-        desc="Brightness Up"),
-    Key([],
-        "XF86MonBrightnessDown",
-        lazy.spawn("brightnessctl s 10%-"),
-        desc="Brightness Down"),
 
     # APP KEYS
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "e", lazy.spawn("thunar"), desc="file manager"),
+    Key([mod], "e", lazy.spawn("thunar"), desc="Thunar File Manager"),
     Key([mod], "h", lazy.spawn("roficlip"), desc="clipboard"),
-    Key([mod], "b", lazy.spawn("firefox"), desc="Screenshot"),
-    Key([], "XF86Tools", lazy.spawn("code"), desc="Launch Visual Studio Code"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Firefox Web Browser"),
     Key(
         [mod],
         "r",
         lazy.spawn("rofi -show drun"),
         desc="Spawn a command using a prompt widget"),
-    Key([], "print", lazy.spawn("flameshot gui"),
-        desc="Launch Flameshot Screenshot Tool"),
 ]
 
 groups = [
@@ -178,6 +170,15 @@ widget_defaults = dict(
     foreground=catpuccino_latte[14]
 )
 extension_defaults = widget_defaults.copy()
+
+if os.uname()[1].lower() == "desktop":
+    keys = keys + desktop_keys
+    autostart_once("~/.config/qtile/autostart_script/autostart_desktop.sh")
+if os.uname()[1].lower() == "thinkpad":
+    keys = keys + lenovo_keys
+    autostart_once("~/.config/qtile/autostart_script/autostart_lenovo.sh")
+else:
+    pass
 
 
 def set_spacer():
@@ -351,8 +352,6 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
-autostart_once()
 
 
 # EOF
