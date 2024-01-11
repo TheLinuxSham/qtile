@@ -7,3 +7,6 @@ settings/__pycache__/keybinds.cpython-311.pyc
 __pycache__/config.cpython-310.pyc
 __pycache__/color_palette.cpython-311.pyc
 __pycache__/autostart_module.cpython-311.pyc
+autostart_script/__pycache__/autostart_module.cpython-311.pyc
+keys/__pycache__/desktop.cpython-311.pyc
+keys/__pycache__/lenovo.cpython-311.pyc
