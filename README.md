@@ -41,7 +41,16 @@ mv * ~/.config/qtile
 Now log out and start a new session in Qtile or simply press `Mod (usally left Win key) + Ctrl + r` to restart Qtile with the new config.
 
 Consider installing [Dunst](https://wiki.archlinux.org/title/Dunst), a lightweight replacement for the notification-daemons and [Picom](https://wiki.archlinux.org/title/Picom), a standalone window compositor on X11 for a little bit of eye candy.
-# Future Improvements
-I use Qtile on two machines. One of them is a Laptop and the other is my Desktop. They both use different sets of FN-Keys. My goal is configure Qtile in a way to recognize the host and automatically set the right keybindings for the FN-Keys.
+# Features
+I use the same dotfiles for two systems. The code in **config.py** will check for the host systems name and set up Qtile accordingly.
 
-My Desktop also uses two screens. I would love to start specific apps to defined groups and screens.
+
+There's two autostart scripts that start host specific apps/settings via the **autostart_module.py** in **autostart_scripts** folder.
+
+Same goes for some key bindings. My systems use different keyboards and I seperated the keys in host individual python files over at **keys** folder.
+# Future Improvements
+1. I plan on completely extract key related stuff to a seperate file from the config.py and add key chords to them. So I can use the same key combos on any system. Also it would make the config.py more compact.
+
+2. My Desktop also uses two screens. I will add group specific app spawning and specific screen spawning in the future.
+
+3. Make the Battery Icons only show up on my Laptop.
