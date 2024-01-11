@@ -4,9 +4,8 @@ import subprocess
 
 
 @hook.subscribe.startup_once
-def autostart_once():
-    home = os.path.expanduser(
-        '~/.config/qtile/autostart_script/autostart_desktop.sh')
+def autostart_once(script_path: id):
+    home = os.path.expanduser(script_path)
     subprocess.call([home])
 
 # EOF
