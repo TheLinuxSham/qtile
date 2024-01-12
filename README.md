@@ -51,6 +51,6 @@ Same goes for some key bindings. My systems use different keyboards and I sepera
 # Future Improvements
 1. I plan on completely extract key related stuff to a seperate file from the config.py and add key chords to them. So I can use the same key combos on any system. Also it would make the config.py more compact.
 
-2. My Desktop also uses two screens. I will add group specific app spawning and specific screen spawning in the future.
+2. My Desktop uses two screens. I will add group specific app spawning and specific screen spawning in the future.
 
 3. Make the Battery Icons only show up on my Laptop.
