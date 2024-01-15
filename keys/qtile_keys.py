@@ -83,9 +83,10 @@ keys = [
     Key([mod], "e", lazy.spawn("thunar"), desc="Thunar File Manager"),
     Key([mod], "h", lazy.spawn("roficlip"), desc="clipboard"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Firefox Web Browser"),
-    Key(
-        [mod],
-        "r",
-        lazy.spawn("rofi -show drun"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"),
         desc="Spawn a command using a prompt widget"),
+    Key([mod], "next", lazy.spawn("redshift -x"),
+        desc="Redshift Disable Bluelight Filter"),
+    Key([mod], "prior", lazy.spawn("redshift -P -O 2750"),
+        desc="Redshift Enable Bluelight Filter"),
 ]
