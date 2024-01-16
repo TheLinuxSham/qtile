@@ -22,3 +22,6 @@ settings_config/__pycache__/layout_config.cpython-311.pyc
 settings_config/__pycache__/mouse_config.cpython-311.pyc
 settings_config/__pycache__/screen_config.cpython-311.pyc
 autostart_script/__pycache__/autostart_module.cpython-311.pyc
+colors/__pycache__/catpuccino_latte.cpython-311.pyc
+colors/__pycache__/wal_color_grabber.cpython-311.pyc
+colors/__pycache__/wal.cpython-311.pyc
