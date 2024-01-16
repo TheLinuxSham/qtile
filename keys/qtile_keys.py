@@ -86,8 +86,10 @@ keys = [
     Key([mod], "r",
         lazy.spawn("sh -c ~/.config/rofi/launchers/type-1/launcher.sh"),
         desc="Spawn a command using a prompt widget"),
-    Key([mod], "next", lazy.spawn("redshift -x"),
+    Key([mod, "control"], "next", lazy.spawn("redshift -x"),
         desc="Redshift Disable Bluelight Filter"),
+    Key([mod], "next", lazy.spawn("redshift -P -O 4500"),
+        desc="Redshift Enable Bluelight Minimally"),
     Key([mod], "prior", lazy.spawn("redshift -P -O 2750"),
-        desc="Redshift Enable Bluelight Filter"),
+        desc="Redshift Enable Bluelight Strong"),
 ]
