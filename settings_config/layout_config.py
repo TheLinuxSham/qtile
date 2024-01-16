@@ -1,12 +1,16 @@
 from libqtile import layout
-from color_palette.catpuccino_latte import catpuccino_latte
+from colors.wal import colors, load_colors
+
+
+load_colors()
+
 
 layouts = [
     layout.Columns(
         margin=14,
-        border_focus=catpuccino_latte[19],
+        border_focus=colors[7],
         border_on_single=True,
-        border_normal=catpuccino_latte[15],
+        border_normal=colors[3],
         border_width=3
     ),
     layout.Max(),
@@ -22,5 +26,3 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
-
-# EOF
