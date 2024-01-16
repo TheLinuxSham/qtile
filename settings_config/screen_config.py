@@ -1,6 +1,9 @@
-from color_palette.catpuccino_latte import catpuccino_latte
+from colors.wal import colors, load_colors
 from libqtile import bar, widget
 from libqtile.config import Screen
+
+
+load_colors()
 
 
 def set_spacer():
@@ -9,7 +12,7 @@ def set_spacer():
 
 def set_battery(battery_id: int):
     return widget.Battery(
-                    background=catpuccino_latte[10],
+                    background=colors[0],
                     battery=battery_id,
                     format="{char} {percent:2.0%}",
                     full_char="󰂄",
@@ -31,33 +34,34 @@ screens = [
                     padding_x=0,
                     # margin_x=-10,
                     # sets color for groups with active apps
-                    active=catpuccino_latte[25],
+                    active=colors[7],
                     # sets color for inactive groups
-                    inactive=catpuccino_latte[14],
+                    inactive=colors[1],
                     # sets font color for selected group
-                    # block_highlight_text_color=catpuccino_latte[25],
+                    # block_highlight_text_color=colors[25],
                     highlight_method="line",
-                    background=catpuccino_latte[6],
+                    background=colors[0],
                     rounded=True,
                     # set color for line highlight exclusively
-                    highlight_color=catpuccino_latte[6],
+                    highlight_color=colors[2],
                     # sets highlight color for selected group
-                    this_current_screen_border=catpuccino_latte[12],
+                    this_current_screen_border=colors[5],
                     ),
                 set_spacer(),
                 widget.CurrentLayout(
                     fmt=" {}",
-                    background=catpuccino_latte[8]
+                    background=colors[0],
+                    foreground=colors[6]
                 ),
                 widget.Prompt(),
                 set_spacer(),
                 widget.WindowName(
                     fontsize=14,
-                    foreground=catpuccino_latte[25]
+                    foreground=colors[6]
                 ),
                 widget.Chord(
                     chords_colors={
-                        "launch": ("#ff0000", catpuccino_latte[20]),
+                        "launch": ("#ff0000", colors[6]),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
@@ -68,12 +72,12 @@ screens = [
                     emoji_list=["󰸈", "󰖀", "", "󰕾"],
                     fmt="{}",
                     fontsize=25,
-                    background=catpuccino_latte[12],
-                    # padding=3
+                    background=colors[6],
+                    # padding=0
                 ),
                 widget.Spacer(length=-5),
                 widget.Volume(
-                    background=catpuccino_latte[12],
+                    background=colors[6],
                 ),
                 set_spacer(),
                 # set_battery(0),
@@ -81,32 +85,32 @@ screens = [
                 # set_battery(1),
                 # set_spacer(),
                 widget.CPU(
-                    background=catpuccino_latte[3],
+                    background=colors[6],
                     format="CPU {freq_current}GHz"
                 ),
                 widget.Spacer(length=-10),
                 widget.ThermalSensor(
-                    background=catpuccino_latte[3],
+                    background=colors[6],
                     tag_sensor="Tctl"
                 ),
                 set_spacer(),
                 widget.Memory(
-                    background=catpuccino_latte[9],
+                    background=colors[6],
                     format="󰍛 {MemUsed:.00f}/{MemTotal:.00f}{mm}",
                     update_interval=5.0,
                     measure_mem="M"
                 ),
                 set_spacer(),
                 widget.Clock(
-                    background=catpuccino_latte[5],
+                    background=colors[6],
                     format="󰃮 %a %d.%m.%Y  %I:%M %p",
                     ),
             ],
             28,  # bar thinkness
-            background=catpuccino_latte[14],
+            background=colors[0],
             # margin = [4,10,4,10], # set up for floating bar
             border_width=[4, 10, 4, 10],  # Draw top and bottom borders
-            border_color=catpuccino_latte[14]
+            border_color=colors[0]
             # ["ff00ff", "ff00ff", "ff00ff", "ff00ff"] for different
             # colors each side
         ),
