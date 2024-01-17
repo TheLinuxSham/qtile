@@ -7,10 +7,10 @@ from settings_thunnel import get_groups, get_group_keys, get_layout, get_mouse, 
 from libqtile import layout
 
 widget_defaults = dict(
-    font="JetBrains Mono Bold",
+    font="GeistMono Nerd Font Bold",
     fontsize=15,
     padding=10,
-    foreground="#4c4f69"
+    foreground="#222222"
 )
 
 extension_defaults = widget_defaults.copy()
@@ -88,6 +88,3 @@ auto_minimize = True
 
 # WM for java apps
 wmname = "LG3D"
-
-
-# EOF
