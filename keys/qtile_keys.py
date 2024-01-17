@@ -1,9 +1,11 @@
 # Keybinds for any system I use
 from libqtile.config import Key
 from libqtile.lazy import lazy
+import os
 
+user = os.getlogin()
 
-mod = "mod4"  # left win key
+mod = "mod4"  # left win (super) key
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -51,14 +53,6 @@ keys = [
         desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod],
-        "p",
-        lazy.spawn("sh -c ~/.config/rofi/scripts/powermenu_t1"),
-        desc="Rofi Script Powermenu"),
-    Key([mod, "control"],
-        "p",
-        lazy.spawn("sh -c ~/.config/rofi/scripts/themes"),
-        desc="Theme_switcher"),
 
     # UNIVERSAL SET OF FN-KEYS
     Key([],
@@ -84,12 +78,16 @@ keys = [
     Key([mod], "h", lazy.spawn("roficlip"), desc="clipboard"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Firefox Web Browser"),
     Key([mod], "r",
-        lazy.spawn("sh -c ~/.config/rofi/launchers/type-1/launcher.sh"),
+        lazy.spawn("rofi -show drun"),
         desc="Spawn a command using a prompt widget"),
+    Key([mod],
+        "p",
+        lazy.spawn(f"rofi -show power-menu -modi power-menu:/home/{user}/.config/rofi/rofi-power-menu"),
+        desc="Rofi Script Powermenu"),
     Key([mod, "control"], "next", lazy.spawn("redshift -x"),
         desc="Redshift Disable Bluelight Filter"),
     Key([mod], "next", lazy.spawn("redshift -P -O 4500"),
-        desc="Redshift Enable Bluelight Minimally"),
+        desc="Redshift Enable Bluelight Weak"),
     Key([mod], "prior", lazy.spawn("redshift -P -O 2750"),
         desc="Redshift Enable Bluelight Strong"),
 ]
