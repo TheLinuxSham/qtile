@@ -33,31 +33,29 @@ screens = [
                 widget.GroupBox(
                     padding_x=0,
                     # margin_x=-10,
-                    # sets color for groups with active apps
-                    active=colors[7],
+                    # sets color for group(text) with active apps
+                    active=colors[8],
                     # sets color for inactive groups
                     inactive=colors[1],
-                    # sets font color for selected group
-                    # block_highlight_text_color=colors[25],
                     highlight_method="line",
                     background=colors[0],
                     rounded=True,
-                    # set color for line highlight exclusively
-                    highlight_color=colors[2],
-                    # sets highlight color for selected group
-                    this_current_screen_border=colors[5],
+                    # sets color for highlight(block) exclusively
+                    highlight_color=colors[1],
+                    # sets highlight (underline) color for selected group
+                    this_current_screen_border=colors[8],
                     ),
                 set_spacer(),
                 widget.CurrentLayout(
                     fmt=" {}",
                     background=colors[0],
-                    foreground=colors[6]
+                    foreground=colors[3]
                 ),
                 widget.Prompt(),
                 set_spacer(),
                 widget.WindowName(
                     fontsize=14,
-                    foreground=colors[6]
+                    foreground=colors[8]
                 ),
                 widget.Chord(
                     chords_colors={
@@ -72,12 +70,12 @@ screens = [
                     emoji_list=["󰸈", "󰖀", "", "󰕾"],
                     fmt="{}",
                     fontsize=25,
-                    background=colors[6],
+                    background=colors[4],
                     # padding=0
                 ),
                 widget.Spacer(length=-5),
                 widget.Volume(
-                    background=colors[6],
+                    background=colors[4],
                 ),
                 set_spacer(),
                 # set_battery(0),
@@ -85,12 +83,12 @@ screens = [
                 # set_battery(1),
                 # set_spacer(),
                 widget.CPU(
-                    background=colors[6],
+                    background=colors[5],
                     format="CPU {freq_current}GHz"
                 ),
                 widget.Spacer(length=-10),
                 widget.ThermalSensor(
-                    background=colors[6],
+                    background=colors[5],
                     tag_sensor="Tctl"
                 ),
                 set_spacer(),
@@ -102,7 +100,7 @@ screens = [
                 ),
                 set_spacer(),
                 widget.Clock(
-                    background=colors[6],
+                    background=colors[7],
                     format="󰃮 %a %d.%m.%Y  %I:%M %p",
                     ),
             ],
@@ -125,5 +123,3 @@ screens = [
         # x11_drag_polling_rate = 60,
     ),
 ]
-
-# EOF
