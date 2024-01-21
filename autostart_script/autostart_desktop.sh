@@ -11,3 +11,13 @@ nitrogen --restore &
 
 # Start corectrl for adjusting CPU and GPU handling
 corectrl --minimize-systray &
+
+# Start Dunst Notification Daemon
+${HOME}/.config/dunst/launchdunst.sh &
+
+# Set Bluelight Protection
+redshift -P -O 4500 &
+
+# Start Clipton Clipboard Manager
+systemctl --user restart clipton &
+
