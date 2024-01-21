@@ -36,7 +36,7 @@ screens = [
                     # sets color for group(text) with active apps
                     active=colors[8],
                     # sets color for inactive groups
-                    inactive=colors[1],
+                    inactive=colors[6],
                     highlight_method="line",
                     background=colors[0],
                     rounded=True,
@@ -106,8 +106,8 @@ screens = [
             ],
             28,  # bar thinkness
             background=colors[0],
-            # margin = [4,10,4,10], # set up for floating bar
-            border_width=[4, 10, 4, 10],  # Draw top and bottom borders
+            margin=[10, 15, -5, 15],  # set up for floating bar
+            border_width=[4, 10, 4, 0],  # Draw top and bottom borders
             border_color=colors[0]
             # ["ff00ff", "ff00ff", "ff00ff", "ff00ff"] for different
             # colors each side
