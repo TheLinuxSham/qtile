@@ -71,6 +71,8 @@ Alternative: [feh](https://wiki.archlinux.org/title/Feh)
 ## PyWal
 I use [PyWal](https://github.com/dylanaraps/pywal) to generate color schemes from my set wallpaper automatically. This color scheme is safed in a cache file and can be used by Qtile, Visual Studio Code, Alacritty, Neo Vim and so on. See ./colors/wal.py. 
 
+You COULD also use PyWal to set your wallpaper, instead of nitrogen. But only if you use one screen.
+
 For more customization see [here](https://github.com/dylanaraps/pywal/wiki/Customization#rofi).
 
 ## Rofi (optional)
@@ -85,6 +87,8 @@ Alternative: [dmenu](https://wiki.archlinux.org/title/Dmenu)
 
 ## Dunst (optional)
 Qtile does not need [Dunst](https://wiki.archlinux.org/title/Dunst) to be able to run. But you won't see any notifications on your system without Dunst. 
+
+Color scheme is also used from PyWal. I modified the default dunstrc to my liking and added the colors I want PyWal to set. I copied the dunstrc to ~/.config/wal/templates. Also the documentation for [templates](https://github.com/dylanaraps/pywal/wiki/User-Template-Files) may be of interest. Then I created a script to restart Dunst every time I set a new scheme with PyWal and created a symlink between the template dunstrc and the dunstrc in my .config.
 
 ## Picom (optional)
 I can set up shadows and round edges for windows with [Picom](https://wiki.archlinux.org/title/Picom). Qtile does not need this package to be able to run and there are a lot of alternatives. Picom is for X11.
