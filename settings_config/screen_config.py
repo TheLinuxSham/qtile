@@ -1,6 +1,33 @@
 from colors.wal import colors, load_colors
 from libqtile import bar, widget
 from libqtile.config import Screen
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
+
+
+arrow_right = {
+    "decorations": [
+        PowerLineDecoration(path="arrow_right"),
+    ]
+}
+
+arrow_left = {
+    "decorations": [
+        PowerLineDecoration(path="arrow_left"),
+    ]
+}
+
+rounded_right = {
+    "decorations": [
+        PowerLineDecoration(path="rounded_right"),
+    ]
+}
+
+rounded_left = {
+    "decorations": [
+        PowerLineDecoration(path="rounded_left"),
+    ]
+}
 
 
 load_colors()
@@ -29,7 +56,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                set_spacer(),
+                # widget.Spacer(arrow_right),
                 widget.GroupBox(
                     padding_x=0,
                     # margin_x=-10,
@@ -44,13 +71,8 @@ screens = [
                     highlight_color=colors[1],
                     # sets highlight (underline) color for selected group
                     this_current_screen_border=colors[8],
+                    **arrow_left
                     ),
-                set_spacer(),
-                widget.CurrentLayout(
-                    fmt=" {}",
-                    background=colors[0],
-                    foreground=colors[3]
-                ),
                 widget.Prompt(),
                 set_spacer(),
                 widget.WindowName(
@@ -65,50 +87,55 @@ screens = [
                 ),
                 widget.Systray(),
                 set_spacer(),
+                widget.Spacer(
+                    length=8,
+                    **arrow_right
+                ),
                 widget.Volume(
                     emoji=True,
                     emoji_list=["󰸈", "󰖀", "", "󰕾"],
                     fmt="{}",
                     fontsize=25,
                     background=colors[4],
-                    # padding=0
                 ),
-                widget.Spacer(length=-5),
+                widget.Spacer(length=-6),
                 widget.Volume(
                     background=colors[4],
+                    **arrow_right
                 ),
-                set_spacer(),
+                # set_spacer(),
                 # set_battery(0),
                 # widget.Spacer(length=-10),
                 # set_battery(1),
                 # set_spacer(),
                 widget.CPU(
                     background=colors[5],
-                    format="CPU {freq_current}GHz"
+                    format="CPU {freq_current}GHz",
                 ),
                 widget.Spacer(length=-10),
                 widget.ThermalSensor(
                     background=colors[5],
-                    tag_sensor="Tctl"
+                    tag_sensor="Tctl",
+                    **arrow_right
                 ),
-                set_spacer(),
                 widget.Memory(
                     background=colors[6],
                     format="󰍛 {MemUsed:.00f}/{MemTotal:.00f}{mm}",
                     update_interval=5.0,
-                    measure_mem="M"
+                    measure_mem="M",
+                    **arrow_right
                 ),
-                set_spacer(),
                 widget.Clock(
                     background=colors[7],
                     format="󰃮 %a %d.%m.%Y  %I:%M %p",
+                    # **rounded_left
                     ),
             ],
             28,  # bar thinkness
-            background=colors[0],
+            background="#FF00FF05",
             margin=[10, 15, -5, 15],  # set up for floating bar
-            border_width=[4, 10, 4, 0],  # Draw top and bottom borders
-            border_color=colors[0]
+            # border_width=[4, 10, 4, 0],  # Draw top and bottom borders
+            # border_color=colors[0]
             # ["ff00ff", "ff00ff", "ff00ff", "ff00ff"] for different
             # colors each side
         ),
