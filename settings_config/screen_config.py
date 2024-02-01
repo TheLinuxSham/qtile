@@ -56,7 +56,10 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                # widget.Spacer(arrow_right),
+                widget.Spacer(
+                    length=8,
+                    background=colors[0]
+                ),
                 widget.GroupBox(
                     padding_x=0,
                     # margin_x=-10,
@@ -96,11 +99,11 @@ screens = [
                     emoji_list=["󰸈", "󰖀", "", "󰕾"],
                     fmt="{}",
                     fontsize=25,
-                    background=colors[4],
+                    background=colors[3],
                 ),
                 widget.Spacer(length=-6),
                 widget.Volume(
-                    background=colors[4],
+                    background=colors[3],
                     **arrow_right
                 ),
                 # set_spacer(),
@@ -109,13 +112,19 @@ screens = [
                 # set_battery(1),
                 # set_spacer(),
                 widget.CPU(
-                    background=colors[5],
+                    background=colors[4],
                     format="CPU {freq_current}GHz",
                 ),
                 widget.Spacer(length=-10),
                 widget.ThermalSensor(
-                    background=colors[5],
+                    background=colors[4],
                     tag_sensor="Tctl",
+                    **arrow_right
+                ),
+                widget.ThermalSensor(
+                    fmt="GPU {}",
+                    background=colors[5],
+                    tag_sensor="edge",
                     **arrow_right
                 ),
                 widget.Memory(
