@@ -1,25 +1,27 @@
-from libqtile.config import Key, Match
+from libqtile.config import Key, Match, Group, Click, Drag, Screen
 from libqtile.lazy import lazy
 import os
 from keys.qtile_keys import mod
 from autostart_script.autostart_module import autostart_once
-from settings_thunnel import get_groups, get_group_keys, get_layout, get_mouse, get_bar, get_keys, get_desktop, get_lenovo
-from libqtile import layout
+from libqtile import layout, bar, widget
+from colors.wal import colors, load_colors
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
+from keys.desktop import desktop_keys
+from keys.lenovo import lenovo_keys
+from keys.qtile_keys import keys
 
-widget_defaults = dict(
-    font="GeistMono Nerd Font Bold",
-    fontsize=15,
-    padding=10,
-    foreground="#222222"
-)
 
-extension_defaults = widget_defaults.copy()
+def get_keys():
+    return keys
 
-screens = get_bar()
-layouts = get_layout()
-mouse = get_mouse()
-groups = get_groups()
-group_keys = get_group_keys()
+
+def get_desktop():
+    return keys + desktop_keys
+
+
+def get_lenovo():
+    return keys + lenovo_keys
 
 
 # Sets up settings specific to host system name
@@ -31,6 +33,66 @@ if os.uname()[1].lower() == "thinkpad":
     autostart_once("~/.config/qtile/autostart_script/autostart_lenovo.sh")
 else:
     get_keys()
+
+
+load_colors()
+
+
+mouse = [
+    Drag(
+        [mod], "Button1", lazy.window.set_position_floating(),
+        start=lazy.window.get_position()
+            ),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(),
+        start=lazy.window.get_size()
+        ),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+]
+
+
+widget_defaults = dict(
+    font="GeistMono Nerd Font Bold",
+    fontsize=15,
+    padding=10,
+    foreground="#222222"
+)
+
+
+extension_defaults = widget_defaults.copy()
+
+
+# GROUPS
+groups = [
+    Group("1"), Group("2"), Group("3"), Group("4"),
+    Group("5"), Group("6"), Group("7"), Group("8")
+    ]
+
+group_keys = ["1", "2", "3", "4", "5", "6", "7", "8"]
+
+
+# LAYOUTS
+layouts = [
+    layout.Columns(
+        margin=14,
+        border_focus=colors[7],
+        border_on_single=True,
+        border_normal=colors[3],
+        border_width=3
+    ),
+    layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    # layout.MonadTall(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
+]
 
 
 for i in range(len(groups)):
@@ -88,3 +150,159 @@ auto_minimize = True
 
 # WM for java apps
 wmname = "LG3D"
+
+
+arrow_right = {
+    "decorations": [
+        PowerLineDecoration(path="arrow_right"),
+    ]
+}
+
+arrow_left = {
+    "decorations": [
+        PowerLineDecoration(path="arrow_left"),
+    ]
+}
+
+rounded_right = {
+    "decorations": [
+        PowerLineDecoration(path="rounded_right"),
+    ]
+}
+
+rounded_left = {
+    "decorations": [
+        PowerLineDecoration(path="rounded_left"),
+    ]
+}
+
+
+load_colors()
+
+
+def set_spacer():
+    return widget.Spacer(length=8)
+
+
+def set_battery(battery_id: int):
+    return widget.Battery(
+                    background=colors[0],
+                    battery=battery_id,
+                    format="{char} {percent:2.0%}",
+                    full_char="󰂄",
+                    discharge_char="󰂂",
+                    charge_char="󱐋",
+                    unknown_char="",
+                    low_foreground="#ff0000",
+                    low_percentage=0.25,
+                    update_interval=120
+                )
+
+
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.Spacer(
+                    length=8,
+                    background=colors[0]
+                ),
+                widget.GroupBox(
+                    padding_x=0,
+                    # margin_x=-10,
+                    # sets color for group(text) with active apps
+                    active=colors[8],
+                    # sets color for inactive groups
+                    inactive=colors[6],
+                    highlight_method="line",
+                    background=colors[0],
+                    rounded=True,
+                    # sets color for highlight(block) exclusively
+                    highlight_color=colors[1],
+                    # sets highlight (underline) color for selected group
+                    this_current_screen_border=colors[8],
+                    **arrow_left
+                    ),
+                widget.Prompt(),
+                set_spacer(),
+                widget.WindowName(
+                    fontsize=14,
+                    foreground=colors[8]
+                ),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", colors[6]),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                widget.Systray(),
+                set_spacer(),
+                widget.Spacer(
+                    length=8,
+                    **arrow_right
+                ),
+                widget.Volume(
+                    emoji=True,
+                    emoji_list=["󰸈", "󰖀", "", "󰕾"],
+                    fmt="{}",
+                    fontsize=25,
+                    background=colors[3],
+                ),
+                widget.Spacer(length=-6),
+                widget.Volume(
+                    background=colors[3],
+                    **arrow_right
+                ),
+                # set_spacer(),
+                # set_battery(0),
+                # widget.Spacer(length=-10),
+                # set_battery(1),
+                # set_spacer(),
+                widget.CPU(
+                    background=colors[4],
+                    format="CPU {freq_current}GHz",
+                ),
+                widget.Spacer(length=-10),
+                widget.ThermalSensor(
+                    background=colors[4],
+                    tag_sensor="Tctl",
+                    **arrow_right
+                ),
+                widget.ThermalSensor(
+                    fmt="GPU {}",
+                    background=colors[5],
+                    tag_sensor="edge",
+                    **arrow_right
+                ),
+                widget.Memory(
+                    background=colors[6],
+                    format="󰍛 {MemUsed:.00f}/{MemTotal:.00f}{mm}",
+                    update_interval=5.0,
+                    measure_mem="M",
+                    **arrow_right
+                ),
+                widget.Clock(
+                    background=colors[7],
+                    format="󰃮 %a %d.%m.%Y  %I:%M %p",
+                    # **rounded_left
+                    ),
+            ],
+            28,  # bar thinkness
+            background="#FF00FF05",
+            margin=[10, 15, -5, 15],  # set up for floating bar
+            # border_width=[4, 10, 4, 0],  # Draw top and bottom borders
+            # border_color=colors[0]
+            # ["ff00ff", "ff00ff", "ff00ff", "ff00ff"] for different
+            # colors each side
+        ),
+        # You can uncomment this variable if you see
+        # that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve
+        # performance, however your system might still be struggling
+
+        # This variable is set to None (no cap) by default, but you can set it
+        # to 60 to indicate that you limit it to 60 events per second
+
+        # x11_drag_polling_rate = 60,
+    ),
+]
