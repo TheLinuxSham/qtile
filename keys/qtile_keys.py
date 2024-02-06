@@ -74,7 +74,7 @@ keys = [
 
     # APP KEYS
     Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
-    Key([mod], "e", lazy.spawn("thunar"), desc="Thunar File Manager"),
+    Key([mod], "e", lazy.spawn("nautilus"), desc="Thunar File Manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Firefox Web Browser"),
     Key([mod], "r",
         lazy.spawn("rofi -show drun"),

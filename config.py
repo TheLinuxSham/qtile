@@ -53,7 +53,7 @@ mouse = [
 
 widget_defaults = dict(
     font="GeistMono Nerd Font Bold",
-    fontsize=15,
+    fontsize=17,
     padding=10,
     foreground="#222222"
 )
@@ -186,7 +186,7 @@ def set_spacer():
 
 def set_battery(battery_id: int):
     return widget.Battery(
-                    background=colors[0],
+                    background=colors[5],
                     battery=battery_id,
                     format="{char} {percent:2.0%}",
                     full_char="󰂄",
@@ -195,7 +195,8 @@ def set_battery(battery_id: int):
                     unknown_char="",
                     low_foreground="#ff0000",
                     low_percentage=0.25,
-                    update_interval=120
+                    update_interval=120,
+                    **arrow_right
                 )
 
 
@@ -226,7 +227,7 @@ screens = [
                 widget.Prompt(),
                 set_spacer(),
                 widget.WindowName(
-                    fontsize=14,
+                    # fontsize=14,
                     foreground=colors[8]
                 ),
                 widget.Chord(
@@ -253,11 +254,6 @@ screens = [
                     background=colors[3],
                     **arrow_right
                 ),
-                # set_spacer(),
-                # set_battery(0),
-                # widget.Spacer(length=-10),
-                # set_battery(1),
-                # set_spacer(),
                 widget.CPU(
                     background=colors[4],
                     format="CPU {freq_current}GHz",
@@ -265,15 +261,20 @@ screens = [
                 widget.Spacer(length=-10),
                 widget.ThermalSensor(
                     background=colors[4],
-                    tag_sensor="Tctl",
+                    tag_sensor="CPU", # Tctl
                     **arrow_right
                 ),
-                widget.ThermalSensor(
-                    fmt="GPU {}",
-                    background=colors[5],
-                    tag_sensor="edge",
-                    **arrow_right
-                ),
+                # widget.ThermalSensor(
+                #     fmt="GPU {}",
+                #     background=colors[5],
+                #     tag_sensor="edge",
+                #     **arrow_right
+                # ),
+                # set_spacer(),
+                set_battery(0),
+                widget.Spacer(length=-15),
+                set_battery(1),
+                # set_spacer(),
                 widget.Memory(
                     background=colors[6],
                     format="󰍛 {MemUsed:.00f}/{MemTotal:.00f}{mm}",
