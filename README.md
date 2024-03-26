@@ -1,3 +1,7 @@
+# Announcement
+
+This Repo is depreciated. I no longer use Qtile!
+
 # About
 
 These are the Dotfiles for my personal Qtile Setup. [Qtile](https://qtile.org/) is a tiling window manager for Linux that's written and configured solely in Python.  
@@ -58,7 +62,7 @@ Same goes for some key bindings. My systems use different keyboards and I sepera
 
 # Dependencies & Packages Overview
 ## Qtile
-Qtile, of course, is used to run Qtile... you now?
+Qtile, of course and Qtile-Extras from the AUR.
 
 python-psutil and lm-sensors are used to grab information off of hardware 
 (see documentation [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#thermalsensor), [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#cpu), and [here](https://docs.qtile.org/en/stable/manual/ref/widgets.html#memory))
